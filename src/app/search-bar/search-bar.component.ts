@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'he-search-bar',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
+  @Input() userInput: string;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  submit(event) {
+    event.preventDefault();
+    console.log(this.userInput);
   }
 
 }
