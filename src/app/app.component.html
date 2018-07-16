@@ -1,21 +1,24 @@
 <he-search-bar></he-search-bar>
 
 
-<div class="container">
+<div class="container" *ngIf="data && data.results">
   <strong>Results: </strong> {{ data.total_results }}
-  <p>Page {{ data.page }} of {{ data.total_pages }}</p>
+
+  <div class="text-right">
+    <pagination-controls (pageChange)="goToPage($event)" maxSize="9" directionLinks="true" autoHide="false"
+      previousLabel="" nextLabel=""></pagination-controls>
+  </div>
 
   <ul>
-    <li *ngFor="let movie of data.results">
-      <h3>
-
-        {{ movie.title }}
-      </h3>
-      <p>
-
-        {{ movie.overview }}
-      </p>
+    <li *ngFor="let movie of data.results | paginate: { itemsPerPage: 20, currentPage: data.page, totalItems: data.total_results }">
+      <h3>{{ movie.title }}</h3>
+      <p>{{ movie.overview }}</p>
     </li>
   </ul>
+
+  <div class="text-right">
+      <pagination-controls (pageChange)="goToPage($event)" maxSize="9" directionLinks="true" autoHide="false"
+        previousLabel="" nextLabel=""></pagination-controls>
+    </div>
 
 </div>

@@ -13,7 +13,7 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  public getMovies(query: string = 'star wars', page: number = 1): Observable<Object> {
+  public getMovies(query: string, page: number): Observable<Object> {
     const getMoviesRequest =
       API_ENDPOINT
       + '/3/search/movie?include_adult=false&page='
