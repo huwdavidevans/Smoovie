@@ -1,0 +1,40 @@
+@import '../../styles/variables';
+:host {
+  display: block;
+  background: $smoovie-gradient;
+  text-align: center;
+
+  .logo-badge {
+    padding: .5rem;
+  }
+
+  .search-box {
+    padding: 2.5rem;
+  }
+
+  .form-control, .btn {
+    border-radius: 0;
+  }
+
+  .search-form {
+    position: relative;
+
+    .search-input {
+      border: 0;
+      width: 100%;
+      height: 36px;
+      text-align: center;
+      &::placeholder {
+        color: $chalk-dust;
+      }
+    }
+
+    .search-submit {
+      position: absolute;
+      top:0;
+      right: 0;
+      height: 36px;
+    }
+  }
+
+}
