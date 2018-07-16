@@ -13,12 +13,14 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  public getMovies(page: number = 1): Observable<Object> {
+  public getMovies(query: string = 'star wars', page: number = 1): Observable<Object> {
     const getMoviesRequest =
       API_ENDPOINT
       + '/3/search/movie?include_adult=false&page='
       + page
-      + '&query=star%20wars&language=en-US&api_key='
+      + '&query='
+      + encodeURIComponent(query)
+      + '&language=en-US&api_key='
       + API_KEY;
 
     return this.http.get<Object>(getMoviesRequest);
