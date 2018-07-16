@@ -1,1 +1,21 @@
 <he-search-bar></he-search-bar>
+
+
+<div class="container">
+  <strong>Results: </strong> {{ data.total_results }}
+  <p>Page {{ data.page }} of {{ data.total_pages }}</p>
+
+  <ul>
+    <li *ngFor="let movie of data.results">
+      <h3>
+
+        {{ movie.title }}
+      </h3>
+      <p>
+
+        {{ movie.overview }}
+      </p>
+    </li>
+  </ul>
+
+</div>
