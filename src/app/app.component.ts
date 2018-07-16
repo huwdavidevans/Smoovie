@@ -8,12 +8,19 @@ import { MovieService } from './movie.service';
 })
 export class AppComponent implements OnInit {
   title = 'Smoovie';
+  data;
 
-  constructor(private movieService: MovieService) {
-  }
+  constructor(private movieService: MovieService) { }
 
   ngOnInit() {
-    this.movieService.getMovies();
+    this.movieService.getMovies()
+      .subscribe(
+        data => {
+          this.data = data;
+        },
+        err => {
+          console.log('waaaaaa :\'(');
+        });
   }
 
 }
