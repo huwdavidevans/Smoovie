@@ -19,12 +19,11 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-
-  public getMovies(query: string, filter: string = 'both', page: number): Observable<Object> {
-    return this.http.get<Object>(this.buildUrl(query, filter, page));
+  public searchMovieDb(query: string, filter: string = 'both', page: number): Observable<Object> {
+    return this.http.get<Object>(this.buildSearchUrl(query, filter, page));
   }
 
-  private buildUrl(query: string, filter: string, page: number): string {
+  private buildSearchUrl(query: string, filter: string, page: number): string {
     return API_ENDPOINT
     + '/3/search/'
     + this.filterMap[filter]
@@ -34,5 +33,17 @@ export class MovieService {
     + encodeURIComponent(query)
     + '&language=en-US&api_key='
     + API_KEY;
+  }
+
+  public getPopularMovieDb(query: string, filter: string = 'both', page: number): Observable<Object> {
+    return this.http.get<Object>(this.buildPopularMoviesUrl(page));
+  }
+
+  private buildPopularMoviesUrl(page: number): string {
+    return API_ENDPOINT
+      + '/3/discover/movie?api_key='
+      + API_KEY
+      + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page='
+      + page;
   }
 }

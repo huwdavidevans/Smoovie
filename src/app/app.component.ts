@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {  }
 
-  updateSearch(searchModel: Object): void {
+  updateSearch(searchModel: any): void {
     this.query = searchModel.searchTerm || '';
     this.filter = searchModel.filter || 'both';
     this.goToPage();
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
   goToPage(page: number = 1) {
     this.state = 'loading';
-    this.movieService.getMovies(this.query, this.filter, page)
+    this.movieService.searchMovieDb(this.query, this.filter, page)
     .subscribe(
       data => {
         this.data = data;

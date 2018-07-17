@@ -15,19 +15,30 @@ export class MovieRecordComponent implements OnInit, OnChanges {
   headline;
   description;
 
-  @Input() record: Object;
+  @Input() record: any;
+  @Input() recordType: string;
   constructor() { }
 
   ngOnInit() { }
 
   ngOnChanges() {
     if (!this.record) { return; }
-    console.log(this.record);
-
-    this.type = this.record.media_type ? this.record.media_type : 'person';
+    this.determineType();
     this.headline = this.getIdentity();
     this.description = this.getDescription();
     this.imagePath = this.getImage();
+  }
+
+  private determineType() {
+    if (this.recordType === 'both') {
+      this.type = this.record.media_type ? this.record.media_type : 'person';
+    }
+    if (this.recordType === 'person') {
+      this.type = 'person';
+    }
+    if (this.recordType === 'movie') {
+      this.type = 'movie';
+    }
   }
 
   private getImage() {

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'he-search-bar',
@@ -13,10 +12,9 @@ export class SearchBarComponent implements OnInit {
     filter: 'both'
   };
 
-  @Output() searchChange: EventEmitter<string> = new EventEmitter();
+  @Output() searchChange: EventEmitter<Object> = new EventEmitter();
 
-  constructor() { }
-
+  constructor() {}
   ngOnInit() {}
 
   submit(event) {
