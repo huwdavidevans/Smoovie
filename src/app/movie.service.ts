@@ -19,11 +19,11 @@ export class MovieService {
 
   constructor(private http: HttpClient) { }
 
-  public searchMovieDb(query: string, filter: string = 'both', page: number): Observable<Object> {
+  public searchMovieDb(query: string, filter: string = 'both', page: number = 1): Observable<Object> {
     return this.http.get<Object>(this.buildSearchUrl(query, filter, page));
   }
 
-  private buildSearchUrl(query: string, filter: string, page: number): string {
+  private buildSearchUrl(query: string, filter: string, page: number ): string {
     return API_ENDPOINT
     + '/3/search/'
     + this.filterMap[filter]
@@ -35,7 +35,7 @@ export class MovieService {
     + API_KEY;
   }
 
-  public getPopularMovieDb(query: string, filter: string = 'both', page: number): Observable<Object> {
+  public getPopularMovieDb(page: number = 1): Observable<Object> {
     return this.http.get<Object>(this.buildPopularMoviesUrl(page));
   }
 

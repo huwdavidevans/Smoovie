@@ -7,14 +7,17 @@ import { MovieService } from './movie.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  state = 'empty';
   filter = 'both';
+  state = 'empty';
   query;
   data;
+  discoverResults;
 
   constructor(private movieService: MovieService) { }
 
-  ngOnInit() {  }
+  ngOnInit() {
+    this.goToDiscoverPage();
+  }
 
   updateSearch(searchModel: any): void {
     this.query = searchModel.searchTerm || '';
@@ -38,4 +41,19 @@ export class AppComponent implements OnInit {
     });
   }
 
+  goToDiscoverPage(page: number = 1) {
+    this.state = 'loading';
+    this.movieService.getPopularMovieDb(page)
+    .subscribe(
+      (data: any) => {
+        this.discoverResults = data.results;
+      },
+      err => {
+        console.log(err);
+        this.state = 'error';
+      },
+      () => {
+        this.state = 'discoverLoaded';
+    });
+  }
 }

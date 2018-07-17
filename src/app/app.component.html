@@ -2,10 +2,15 @@
 
 <he-spinner *ngIf="state === 'loading'"></he-spinner>
 <div *ngIf="state === 'error'" class="state error-state"><h1>:(</h1><p>Sorry but we were unable to return your results.</p></div>
-<div *ngIf="state === 'empty'" class="state empty-state"><h1>Welcome to Smoovie</h1><p>Type in the search box above to find your next favourite Movie or Actor.</p></div>
+
+<div class="container discover" *ngIf="state === 'discoverLoaded'">
+    <h2>Discover Popular Movies</h2>
+    <div class="state">
+      <he-movie-poster *ngFor="let movie of discoverResults" [movie]="movie"></he-movie-poster>
+    </div>
+</div>
 
 <div class="container results" *ngIf="state === 'loaded' && data && data.results">
-
   <h2>Showing <span class="highlight">{{ data.total_results }}</span> results for <span class="highlight">{{ query }}</span></h2>
 
   <div class="text-right" *ngIf="data.total_results > 0">
@@ -26,5 +31,4 @@
     <pagination-controls (pageChange)="goToPage($event)" maxSize="9" directionLinks="true" autoHide="false"
       previousLabel="" nextLabel=""></pagination-controls>
   </div>
-
 </div>
