@@ -10,10 +10,11 @@ const IMG_ENDPOINT = environment.imgEndpoint;
 })
 export class MovieRecordComponent implements OnInit, OnChanges {
 
-  type;
-  imagePath;
-  headline;
-  description;
+  type: string;
+  imagePath: string;
+  headline: string;
+  description: string;
+  detailsPath: string;
 
   @Input() record: any;
   @Input() recordType: string;
@@ -27,6 +28,7 @@ export class MovieRecordComponent implements OnInit, OnChanges {
     this.headline = this.getIdentity();
     this.description = this.getDescription();
     this.imagePath = this.getImage();
+    this.detailsPath = this.getDetailsPath()
   }
 
   private determineType() {
@@ -48,17 +50,27 @@ export class MovieRecordComponent implements OnInit, OnChanges {
     return this.record.profile_path ? IMG_ENDPOINT  + '/w200' + this.record.profile_path : '/assets/actor-generic.jpg';
   }
 
-  private getDescription() {
-    if (this.type !== 'person') {
-      return this.record.overview;
+    private getDescription() {
+      if (this.type !== 'person') {
+        return this.record.overview;
+      }
+
+      if (this.record.known_for && this.record.known_for.length > 0) {
+        return this.record.name + ' is an actor known for their involvement in various shows.';
+      } else {
+        return this.record.name + ' is an actor, but that\'s all we know.';
+      }
     }
 
-    if (this.record.known_for && this.record.known_for.length > 0) {
-      return this.record.name + ' is an actor known for their involvement in various shows.';
-    } else {
-      return this.record.name + ' is an actor, but that\'s all we know.';
+    private getDetailsPath() {
+      if (this.type === 'person') {
+        return null;
+      }
+      if (this.type === 'tv') {
+        return null;
+      }
+      return '/movie/' + this.record.id;
     }
-  }
 
   private getIdentity() {
     if (this.type === 'movie') {

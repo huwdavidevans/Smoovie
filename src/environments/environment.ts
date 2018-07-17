@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  imgEndpoint: 'http://image.tmdb.org/t/p/w200',
+  imgEndpoint: 'http://image.tmdb.org/t/p',
   apiEndpoint: 'https://api.themoviedb.org',
-  apiKey: ''
+  apiKey: '224cff7f326dbbfde49d42869c0e1f1e'
 };
 
 /*
