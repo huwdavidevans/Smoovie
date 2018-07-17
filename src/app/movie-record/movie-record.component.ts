@@ -33,7 +33,7 @@ export class MovieRecordComponent implements OnInit, OnChanges {
     if (this.recordType === 'both') {
       this.type = this.record.media_type ? this.record.media_type : 'person';
     }
-    if (this.recordType === 'person') {
+    if (this.recordType === 'actor') {
       this.type = 'person';
     }
     if (this.recordType === 'movie') {

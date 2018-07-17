@@ -24,7 +24,7 @@
       itemsPerPage: 20,
       currentPage: data.page,
       totalItems: data.total_results
-    }" [record]="item"> [recordType]="filter" </he-movie-record>
+    }" [record]="item" [recordType]="filter"></he-movie-record>
   </ul>
 
   <div class="text-right" *ngIf="data.total_results > 0">
