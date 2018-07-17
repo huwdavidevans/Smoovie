@@ -1,21 +1,24 @@
-<div class="logo-badge">
-    <a href="/">
-      <img src="/assets/smoovie-logo.png" alt="Smoovie" height="80px">
-    </a>
+<div class="top-bar">
+    <div class="logo-badge">
+        <a href="/">
+          <img src="/assets/smoovie-logo.png" alt="Smoovie" height="80px">
+        </a>
+    </div>
+    <div class="search-box">
+      <form class="search-form" (submit)="submit($event)" #form="ngForm">
+        <input type="text" [(ngModel)]="model.searchTerm" (keyup)="submit($event)" class="form-control search-input" id="search-term" name="search-term" placeholder="Find yourself a Movie or Actor">
+        <fieldset>
+            <div class="filter-toggle">
+                <label for="movie"><input type="radio" [(ngModel)]="model.filter" (ngModelChange)="submit()"  value="movie" id="movie" name="filter" /><div>movies</div></label>
+            </div>
+            <div class="filter-toggle">
+                <label for="both"><input type="radio" [(ngModel)]="model.filter" (ngModelChange)="submit()" value="both" id="both" name="filter" /><div>both</div></label>
+            </div>
+            <div class="filter-toggle">
+                <label for="actor"><input type="radio" [(ngModel)]="model.filter" (ngModelChange)="submit()" value="actor" id="actor" name="filter" /><div>actors</div></label>
+            </div>
+        </fieldset>
+      </form>
+    </div>
 </div>
-<div class="search-box">
-  <form class="search-form" (submit)="submit($event)" #form="ngForm">
-    <input type="text" [(ngModel)]="model.searchTerm" (keyup)="submit($event)" class="form-control search-input" id="search-term" name="search-term" placeholder="Find yourself a Movie or Actor">
-    <fieldset>
-        <div class="filter-toggle">
-            <label for="movie"><input type="radio" [(ngModel)]="model.filter" (ngModelChange)="submit()"  value="movie" id="movie" name="filter" /><div>movies</div></label>
-        </div>
-        <div class="filter-toggle">
-            <label for="both"><input type="radio" [(ngModel)]="model.filter" (ngModelChange)="submit()" value="both" id="both" name="filter" /><div>both</div></label>
-        </div>
-        <div class="filter-toggle">
-            <label for="actor"><input type="radio" [(ngModel)]="model.filter" (ngModelChange)="submit()" value="actor" id="actor" name="filter" /><div>actors</div></label>
-        </div>
-    </fieldset>
-  </form>
-</div>
+

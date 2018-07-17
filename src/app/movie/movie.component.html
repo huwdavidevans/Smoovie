@@ -1,0 +1,5 @@
+<he-top-bar></he-top-bar>
+<he-spinner *ngIf="state === 'loading'"></he-spinner>
+<div *ngIf="state === 'error'" class="state error-state"><h1>:(</h1><p>Sorry but we were unable to return your results.</p></div>
+
+<pre>{{ details | json}}</pre>

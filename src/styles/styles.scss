@@ -1,5 +1,31 @@
 @import './variables';
-
 .ngx-pagination li.current {
-  background: $aqua-marine;
+    background: $aqua-marine;
+}
+
+.top-bar {
+    display: block;
+    background: $smoovie-gradient;
+    text-align: center;
+    .logo-badge {
+        padding: .5rem;
+    }
+}
+
+.state {
+    text-align: center;
+    height: 500px;
+    p {
+        font-size: 1.5rem;
+    }
+    &.error-state {
+        h1 {
+            font-size: 20rem;
+        }
+    }
+    &.empty-state {
+        h1 {
+            margin: 5rem auto;
+        }
+    }
 }

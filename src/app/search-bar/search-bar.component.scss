@@ -1,13 +1,5 @@
 @import '../../styles/variables';
 :host {
-  display: block;
-  background: $smoovie-gradient;
-  text-align: center;
-
-  .logo-badge {
-    padding: .5rem;
-  }
-
   .search-box {
     padding: 2.5rem;
   }

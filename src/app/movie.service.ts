@@ -46,4 +46,17 @@ export class MovieService {
       + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page='
       + page;
   }
+
+  public getMovieById(id: number) {
+    return this.http.get<Object>(this.buildGetMovieByIdUrl(id));
+  }
+
+  private buildGetMovieByIdUrl(id: number): string {
+    return API_ENDPOINT
+      + '/3/movie/'
+      + id
+      + '?api_key='
+      + API_KEY
+      + '&language=en-US';
+  }
 }

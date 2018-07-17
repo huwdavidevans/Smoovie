@@ -10,8 +10,9 @@ const IMG_ENDPOINT = environment.imgEndpoint;
 })
 export class MoviePosterComponent implements OnInit, OnChanges {
 
-  imagePath;
-  movieTitle;
+  id: number;
+  imagePath: string;
+  movieTitle: string;
 
   @Input() movie: any;
   constructor() { }
@@ -19,6 +20,7 @@ export class MoviePosterComponent implements OnInit, OnChanges {
   ngOnInit() {}
   ngOnChanges(changes) {
     if (!this.movie) { return; }
+    this.id = this.movie.id;
     this.imagePath = this.movie.poster_path ? IMG_ENDPOINT + this.movie.poster_path : '/assets/movie-generic.jpg';
     this.movieTitle = this.movie.title;
   }

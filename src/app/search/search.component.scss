@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+
+.highlight {
+    color: turquoise;
+}
+
+.result-list {
+    list-style-type: none;
+    padding-left: 0;
+    li {
+        list-style: none;
+    }
+}
+
+.results, .discover {
+    margin-top: 2rem;
+}
