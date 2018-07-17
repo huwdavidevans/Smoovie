@@ -10,3 +10,21 @@
         list-style: none;
     }
 }
+
+.state {
+    text-align: center;
+    height: 500px;
+    p {
+        font-size: 1.5rem;
+    }
+    &.error-state {
+        h1 {
+            font-size: 20rem;
+        }
+    }
+    &.empty-state {
+        h1 {
+            margin: 5rem auto;
+        }
+    }
+}

@@ -7,16 +7,14 @@ import { MovieService } from './movie.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  query = 'star wars';
+  state = 'empty';
   filter = 'both';
-  loading;
+  query;
   data;
 
   constructor(private movieService: MovieService) { }
 
-  ngOnInit() {
-    this.goToPage();
-  }
+  ngOnInit() {  }
 
   updateSearch(searchModel: Object): void {
     this.query = searchModel.searchTerm || '';
@@ -25,17 +23,18 @@ export class AppComponent implements OnInit {
   }
 
   goToPage(page: number = 1) {
-    this.loading = true;
+    this.state = 'loading';
     this.movieService.getMovies(this.query, this.filter, page)
     .subscribe(
       data => {
         this.data = data;
       },
       err => {
-        console.log('waaaaaa :\'(');
+        console.log(err);
+        this.state = 'error';
       },
       () => {
-        this.loading = false;
+        this.state = 'loaded';
     });
   }
 

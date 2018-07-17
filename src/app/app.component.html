@@ -1,11 +1,10 @@
 <he-search-bar (searchChange)="updateSearch($event)"></he-search-bar>
 
-<he-spinner *ngIf="loading"></he-spinner>
+<he-spinner *ngIf="state === 'loading'"></he-spinner>
+<div *ngIf="state === 'error'" class="state error-state"><h1>:(</h1><p>Sorry but we were unable to return your results.</p></div>
+<div *ngIf="state === 'empty'" class="state empty-state"><h1>Welcome to Smoovie</h1><p>Type in the search box above to find your next favourite Movie or Actor.</p></div>
 
-
-<div class="container" *ngIf="!loading && data && data.results">
-
-    <!-- <pre>{{data.results | json}}</pre> -->
+<div class="container" *ngIf="state === 'loaded' && data && data.results">
 
   <h2>Showing <span class="highlight">{{ data.total_results }}</span> results for <span class="highlight">{{ query }}</span></h2>
 
@@ -24,8 +23,8 @@
   </ul>
 
   <div class="text-right">
-      <pagination-controls (pageChange)="goToPage($event)" maxSize="9" directionLinks="true" autoHide="false"
-        previousLabel="" nextLabel=""></pagination-controls>
-    </div>
+    <pagination-controls (pageChange)="goToPage($event)" maxSize="9" directionLinks="true" autoHide="false"
+      previousLabel="" nextLabel=""></pagination-controls>
+  </div>
 
 </div>
