@@ -11,18 +11,28 @@ const API_KEY = environment.apiKey;
 })
 export class MovieService {
 
+  filterMap = {
+    'both': 'multi',
+    'movie': 'movie',
+    'actor': 'person'
+  };
+
   constructor(private http: HttpClient) { }
 
-  public getMovies(query: string, page: number): Observable<Object> {
-    const getMoviesRequest =
-      API_ENDPOINT
-      + '/3/search/multi?include_adult=false&page='
-      + page
-      + '&query='
-      + encodeURIComponent(query)
-      + '&language=en-US&api_key='
-      + API_KEY;
 
-    return this.http.get<Object>(getMoviesRequest);
+  public getMovies(query: string, filter: string = 'both', page: number): Observable<Object> {
+    return this.http.get<Object>(this.buildUrl(query, filter, page));
+  }
+
+  private buildUrl(query: string, filter: string, page: number): string {
+    return API_ENDPOINT
+    + '/3/search/'
+    + this.filterMap[filter]
+    + '?include_adult=false&page='
+    + page
+    + '&query='
+    + encodeURIComponent(query)
+    + '&language=en-US&api_key='
+    + API_KEY;
   }
 }

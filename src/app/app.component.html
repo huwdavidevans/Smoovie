@@ -1,12 +1,12 @@
-<he-search-bar (searchTermChange)="updateSearch($event)"></he-search-bar>
+<he-search-bar (searchChange)="updateSearch($event)"></he-search-bar>
 
 <he-spinner *ngIf="loading"></he-spinner>
 
-<pre>{{data.results | json}}
-</pre>
 
 <div class="container" *ngIf="!loading && data && data.results">
 
+    <pre>{{data.results | json}}</pre>
+    
   <h2>Showing <span class="highlight">{{ data.total_results }}</span> results for <span class="highlight">{{ query }}</span></h2>
 
   <div class="text-right">

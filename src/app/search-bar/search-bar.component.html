@@ -4,21 +4,23 @@
     </a>
 </div>
 
+<pre>{{model | json}}</pre>
+
 <div class="search-box">
   <form class="search-form" (submit)="submit($event)">
-    <input type="text" [(ngModel)]="userInput" class="form-control search-input" id="search-input" name="smoovie-query" placeholder="Find yourself a Movie or Actor">
+    <input type="text" [(ngModel)]="model.searchTerm" class="form-control search-input" id="search-input" name="smoovie-query" placeholder="Find yourself a Movie or Actor">
     <button type="submit" class="btn btn-primary search-submit" id="search-submit">
       <i class="fa fa-search"></i>
     </button>
     <fieldset>
         <div class="filter-toggle">
-            <label for="movie"><input type="radio" id="movie" name="search-filter" /><div>movies</div></label>
+            <label for="movie"><input type="radio" [(ngModel)]="model.filter" value="movie" id="movie" name="filter" /><div>movies</div></label>
         </div>
         <div class="filter-toggle">
-            <label for="both"><input type="radio" id="both" name="search-filter" checked /><div>both</div></label>
+            <label for="both"><input type="radio" [(ngModel)]="model.filter" value="both" id="both" name="filter" /><div>both</div></label>
         </div>
         <div class="filter-toggle">
-            <label for="actor"><input type="radio" id="actor" name="search-filter" /><div>actors</div></label>
+            <label for="actor"><input type="radio" [(ngModel)]="model.filter" value="actor" id="actor" name="filter" /><div>actors</div></label>
         </div>
     </fieldset>
   </form>

@@ -8,6 +8,7 @@ import { MovieService } from './movie.service';
 })
 export class AppComponent implements OnInit {
   query = 'star wars';
+  filter = 'both';
   loading;
   data;
 
@@ -17,14 +18,15 @@ export class AppComponent implements OnInit {
     this.goToPage();
   }
 
-  updateSearch(searchTerm: string): void {
-    this.query = searchTerm ? searchTerm : '';
+  updateSearch(searchModel: Object): void {
+    this.query = searchModel.searchTerm || '';
+    this.filter = searchModel.filter || 'both';
     this.goToPage();
   }
 
   goToPage(page: number = 1) {
     this.loading = true;
-    this.movieService.getMovies(this.query, page)
+    this.movieService.getMovies(this.query, this.filter, page)
     .subscribe(
       data => {
         this.data = data;

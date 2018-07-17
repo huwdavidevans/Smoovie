@@ -8,8 +8,12 @@ import { FormsModule } from '@angular/forms';
 })
 export class SearchBarComponent implements OnInit {
 
-  @Input() userInput: string;
-  @Output() searchTermChange: EventEmitter<string> = new EventEmitter();
+  model = {
+    searchTerm: '',
+    filter: 'both'
+  };
+
+  @Output() searchChange: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
@@ -17,8 +21,8 @@ export class SearchBarComponent implements OnInit {
 
   submit(event) {
     event.preventDefault();
-    if (this.userInput) {
-      this.searchTermChange.emit(this.userInput);
+    if (this.model.searchTerm) {
+      this.searchChange.emit(this.model);
     }
   }
 
