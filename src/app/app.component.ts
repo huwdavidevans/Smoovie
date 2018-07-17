@@ -17,6 +17,11 @@ export class AppComponent implements OnInit {
     this.goToPage();
   }
 
+  updateSearch(searchTerm: string): void {
+    this.query = searchTerm ? searchTerm : '';
+    this.goToPage();
+  }
+
   goToPage(page: number = 1) {
     this.movieService.getMovies(this.query, page)
     .subscribe(

@@ -1,4 +1,4 @@
-<he-search-bar></he-search-bar>
+<he-search-bar (searchTermChange)="updateSearch($event)"></he-search-bar>
 
 
 <div class="container" *ngIf="data && data.results">
