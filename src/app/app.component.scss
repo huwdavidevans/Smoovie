@@ -1,5 +1,12 @@
 @import '../styles/variables';
-
 .highlight {
-  color :turquoise;
+    color: turquoise;
+}
+
+.result-list {
+    list-style-type: none;
+    padding-left: 0;
+    li {
+        list-style: none;
+    }
 }

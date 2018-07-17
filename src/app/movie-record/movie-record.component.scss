@@ -1,0 +1,19 @@
+@import '../../styles/variables';
+
+.list-record {
+  display: flex;
+  margin: 1rem 0;
+
+  .poster {
+    height: 225px;
+    width: 150px;
+  }
+
+  .summary {
+    margin-left: 1rem;
+
+    p {
+      color: lighten($chalk-board, 20%);
+    }
+  }
+}

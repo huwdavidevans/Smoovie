@@ -1,5 +1,9 @@
-<li ng-class="type">
-  <img src="{{imagePath}}" alt="Image of {{ headline }}" width="100">
-  <h2>{{ headline }}</h2>
-  <p>{{ description }}</p>
+<li class="list-record">
+  <div class="preview" class="poster">
+    <img src="{{imagePath}}" alt="Image of {{ headline }}" width="150px" height="225px">
+  </div>
+  <div class="summary">
+    <h2>{{ headline }}</h2>
+    <p>{{ description }}</p>
+  </div>
 </li>
