@@ -15,6 +15,9 @@ import { MovieComponent } from './movie/movie.component';
 import { SearchComponent } from './search/search.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 
+import { YoutubePlayerModule } from 'ngx-youtube-player';
+import { MomentModule } from 'angular2-moment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +40,9 @@ import { TopBarComponent } from './top-bar/top-bar.component';
     ]),
     HttpClientModule,
     NgxPaginationModule,
-    FormsModule
+    FormsModule,
+    YoutubePlayerModule,
+    MomentModule
   ],
   providers: [],
   bootstrap: [AppComponent]

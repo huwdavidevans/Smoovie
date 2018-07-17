@@ -43,9 +43,9 @@ export class MovieRecordComponent implements OnInit, OnChanges {
 
   private getImage() {
     if (this.type !== 'person') {
-      return this.record.poster_path ? IMG_ENDPOINT + this.record.poster_path : '/assets/movie-generic.jpg';
+      return this.record.poster_path ? IMG_ENDPOINT + '/w200' + this.record.poster_path : '/assets/movie-generic.jpg';
     }
-    return this.record.profile_path ? IMG_ENDPOINT + this.record.profile_path : '/assets/actor-generic.jpg';
+    return this.record.profile_path ? IMG_ENDPOINT  + '/w200' + this.record.profile_path : '/assets/actor-generic.jpg';
   }
 
   private getDescription() {

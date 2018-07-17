@@ -1,5 +1,32 @@
 <he-top-bar></he-top-bar>
 <he-spinner *ngIf="state === 'loading'"></he-spinner>
-<div *ngIf="state === 'error'" class="state error-state"><h1>:(</h1><p>Sorry but we were unable to return your results.</p></div>
+<div *ngIf="state === 'error'" class="state error-state">
+  <h1>:(</h1>
+  <p>Sorry but we were unable to return your results.</p>
+</div>
 
-<pre>{{ details | json}}</pre>
+
+<div class="container movie-details">
+  <div class="row">
+    <div class="col-md-8">
+      <h1>{{details.title}}</h1>
+      <h4>{{details.tagline}}</h4>
+      <p>{{details.overview}}</p>
+      <p><strong>{{'Released'}}</strong> {{ details.release_date | amTimeAgo}}</p>
+      <ul class="genre-list">
+        <li class="genre" *ngFor="let genre of details.genres">
+          {{ genre.name }}
+        </li>
+      </ul>
+      <a href="{{details.homepage}}">{{details.homepage}}</a>
+    </div>
+    <div class="col-md-4">
+      <img src="{{imagePath}}" alt="{{details.title}}" width="100%">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-8">credits</div>
+    <div class="col-md-4">
+        <!-- <youtube-player [videoId]="'p9wE8dyzEJE'" width="800px" height="400px"></youtube-player> --></div>
+  </div>
+</div>

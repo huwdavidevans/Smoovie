@@ -21,7 +21,7 @@ export class MoviePosterComponent implements OnInit, OnChanges {
   ngOnChanges(changes) {
     if (!this.movie) { return; }
     this.id = this.movie.id;
-    this.imagePath = this.movie.poster_path ? IMG_ENDPOINT + this.movie.poster_path : '/assets/movie-generic.jpg';
+    this.imagePath = this.movie.poster_path ? IMG_ENDPOINT + '/w200' + this.movie.poster_path : '/assets/movie-generic.jpg';
     this.movieTitle = this.movie.title;
   }
 
