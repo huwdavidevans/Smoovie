@@ -7,12 +7,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { MovieRecordComponent } from './movie-record/movie-record.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchBarComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    MovieRecordComponent
   ],
   imports: [
     BrowserModule,
