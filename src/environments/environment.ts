@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  imgEndpoint: 'http://image.tmdb.org/t/p/w200'
   apiEndpoint: 'https://api.themoviedb.org',
   apiKey: ''
 };
