@@ -16,7 +16,7 @@ export class MovieService {
   public getMovies(query: string, page: number): Observable<Object> {
     const getMoviesRequest =
       API_ENDPOINT
-      + '/3/search/movie?include_adult=false&page='
+      + '/3/search/multi?include_adult=false&page='
       + page
       + '&query='
       + encodeURIComponent(query)

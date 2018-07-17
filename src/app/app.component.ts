@@ -7,8 +7,8 @@ import { MovieService } from './movie.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Smoovie';
   query = 'star wars';
+  loading;
   data;
 
   constructor(private movieService: MovieService) { }
@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
   }
 
   goToPage(page: number = 1) {
+    this.loading = true;
     this.movieService.getMovies(this.query, page)
     .subscribe(
       data => {
@@ -30,7 +31,10 @@ export class AppComponent implements OnInit {
       },
       err => {
         console.log('waaaaaa :\'(');
-      });
+      },
+      () => {
+        this.loading = false;
+    });
   }
 
 }

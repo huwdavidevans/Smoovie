@@ -1,1 +1,5 @@
 @import './variables';
+
+.ngx-pagination li.current {
+  background: $aqua-marine;
+}

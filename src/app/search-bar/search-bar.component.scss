@@ -37,4 +37,27 @@
     }
   }
 
+  .filter-toggle{
+    display: inline-flex;
+    margin-top: 3rem;
+
+    label div {
+      cursor: pointer;
+      width: 128px;
+      margin: 0 1rem;
+      padding: 1rem;
+      border: 1px solid $white;
+      color: $white;
+      text-transform: uppercase;
+    }
+
+    label input[type=radio] {
+      display: none;
+    }
+
+    label input:checked + div {
+      background-color: saturate($aqua-marine, 5%);
+    }
+  }
+
 }
