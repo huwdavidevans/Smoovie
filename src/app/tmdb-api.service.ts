@@ -27,23 +27,23 @@ export class ApiService {
     return this.http.get<Object>(this.buildGetPopularMoviesUrl(page));
   }
 
-  public getMovieById(id: number) {
+  public getMovieById(id: number): Observable<Object> {
     return this.http.get<Object>(this.buildGetMovieByIdUrl(id));
   }
 
-  public getActorById(id: number) {
+  public getActorById(id: number): Observable<Object> {
     return this.http.get<Object>(this.buildGetActorByIdUrl(id));
   }
 
-  public getCreditsByMovieId(id: number) {
+  public getCreditsByMovieId(id: number): Observable<Object> {
     return this.http.get<Object>(this.buildGetCreditsByMovieId(id));
   }
 
-  public getCreditsByActorId(id: number) {
+  public getCreditsByActorId(id: number): Observable<Object> {
     return this.http.get<Object>(this.buildGetCreditsByActorId(id));
   }
 
-  public getSimilarMoviesByMovieId(id: number) {
+  public getSimilarMoviesByMovieId(id: number): Observable<Object> {
     return this.http.get<Object>(this.buildGetSimilarMoviesByMovieId(id));
   }
 
@@ -89,7 +89,7 @@ export class ApiService {
     return API_ENDPOINT
       + '/3/movie/'
       + id
-      + 'credits?api_key='
+      + '/credits?api_key='
       + API_KEY;
   }
 
@@ -97,7 +97,7 @@ export class ApiService {
     return API_ENDPOINT
       + '/3/person/'
       + id
-      + 'movie_credits?api_key='
+      + '/movie_credits?api_key='
       + API_KEY;
   }
 
@@ -105,7 +105,7 @@ export class ApiService {
     return API_ENDPOINT
       + '/3/movie/'
       + id
-      + 'similar?api_key='
+      + '/similar?api_key='
       + API_KEY;
   }
 
