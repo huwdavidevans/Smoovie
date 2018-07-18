@@ -94,7 +94,6 @@ describe('ApiService', () => {
         });
 
       const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
-      console.log(apiRequest.request.url);
       apiRequest.flush(searchPayload);
       httpMock.verify();
     });
