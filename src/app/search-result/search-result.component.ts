@@ -26,7 +26,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 
   ngOnInit() { }
 
-  ngOnChanges() {
+  ngOnChanges(changes: any) {
     if (!this.item) { return; }
     this.determineType();
     this.headline = this.getIdentity();
