@@ -8,6 +8,7 @@ import { MomentModule } from 'angular2-moment';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ActorComponent', () => {
   let component: ActorComponent;
@@ -23,7 +24,8 @@ describe('ActorComponent', () => {
       ], imports: [
         BrowserModule,
         RouterModule.forRoot([]),
-        MomentModule
+        MomentModule,
+        HttpClientTestingModule
       ], providers: [
         { provide: APP_BASE_HREF, useValue: '/'}
       ]

@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { APP_BASE_HREF } from '@angular/common';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SearchBarComponent } from './search-bar.component';
 
 describe('SearchBarComponent', () => {
@@ -8,7 +11,15 @@ describe('SearchBarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchBarComponent ]
+      declarations: [
+        SearchBarComponent
+      ], imports: [
+        BrowserModule,
+        FormsModule,
+        HttpClientTestingModule
+      ], providers: [
+        { provide: APP_BASE_HREF, useValue: '/'}
+      ]
     })
     .compileComponents();
   }));
