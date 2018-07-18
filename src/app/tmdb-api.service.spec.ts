@@ -248,7 +248,43 @@ describe('ApiService', () => {
 
   describe('getActorById', () => {
 
+    let payload;
 
+    beforeEach(() => {
+      payload = {
+        name: 'Patrick Stewart',
+        profile_path: '//klingon.jpg'
+      };
+    });
+
+    it('should return a person', (done) => {
+      const actorId = 90210;
+      const expectedUrl = 'https://api.themoviedb.org/3/person/90210?api_key=224cff7f326dbbfde49d42869c0e1f1e&language=en-US';
+
+      apiService.getActorById(actorId)
+        .subscribe((data) => {
+          expect(data).toBe(payload);
+          done();
+        });
+
+      const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
+      apiRequest.flush(payload);
+      httpMock.verify();
+    });
+
+    it('should return an error', (done) => {
+      const expectedUrl = 'https://api.themoviedb.org/3/person/undefined?api_key=224cff7f326dbbfde49d42869c0e1f1e&language=en-US';
+
+      apiService.getActorById()
+        .subscribe(null, (err) => {
+          expect(err).toBeTruthy();
+          done();
+        });
+
+      const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
+      apiRequest.error(new Error('bad request'));
+      httpMock.verify();
+    });
   });
 
   describe('getCreditsByMovieId', () => {
