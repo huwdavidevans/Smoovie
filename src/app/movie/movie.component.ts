@@ -17,12 +17,15 @@ export class MovieComponent implements OnInit {
   imagePath: string;
   state: string;
   credits = { state: 'empty', cast: [], crew: [] };
+  similarMovies = { state: 'empty', movies: [] };
 
   ngOnInit() {
     const id: number = this.route.snapshot.params['id'];
     this.getDetails(id);
     this.getCredits(id);
+    this.getSimilarMovies(id);
   }
+
   private getDetails(id: number) {
     this.state = 'loading';
     this.apiService.getMovieById(id).subscribe(
@@ -52,6 +55,22 @@ export class MovieComponent implements OnInit {
       },
       () => {
         this.credits.state = 'loaded';
+      }
+    );
+  }
+
+  private getSimilarMovies(id: number) {
+    this.similarMovies.state = 'loading';
+    this.apiService.getSimilarMoviesByMovieId(id).subscribe(
+      (data: any) => {
+        this.similarMovies.movies = data.results;
+      },
+      err => {
+        console.log(err);
+        this.similarMovies.state = 'error';
+      },
+      () => {
+        this.similarMovies.state = 'loaded';
       }
     );
   }

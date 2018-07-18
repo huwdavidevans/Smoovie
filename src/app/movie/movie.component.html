@@ -16,12 +16,21 @@
             </li>
           </ul>
           <a  *ngIf="details.homepage" href="{{details.homepage}}">{{details.homepage}}</a>
-          <p>more like this..</p>
+
+
         </div>
         <div class="col-md-4">
           <img src="{{imagePath}}" alt="{{details.title}}" width="100%">
         </div>
       </div>
+
+      <section class="similar-movies">
+          <he-spinner *ngIf="similarMovies.state === 'loading'"></he-spinner>
+          <div ng-if="similarMovies.state === 'loaded'" class="container">
+            <h3>More like this..</h3>
+            <he-movie-poster *ngFor="let movie of similarMovies.movies" [movie]="movie"></he-movie-poster>
+          </div>
+      </section>
 
       <section>
           <he-spinner *ngIf="credits.state === 'loading'"></he-spinner>
