@@ -16,9 +16,14 @@ export class MovieComponent implements OnInit {
   details: any;
   imagePath: string;
   state: string;
+  credits = { state: 'empty', cast: [], crew: [] };
 
   ngOnInit() {
     const id: number = this.route.snapshot.params['id'];
+    this.getDetails(id);
+    this.getCredits(id);
+  }
+  private getDetails(id: number) {
     this.state = 'loading';
     this.apiService.getMovieById(id).subscribe(
       data => {
@@ -32,6 +37,23 @@ export class MovieComponent implements OnInit {
       () => {
         this.state = 'loaded';
       });
+   }
+
+  private getCredits(id: number) {
+    this.credits.state = 'loading';
+    this.apiService.getCreditsByMovieId(id).subscribe(
+      (data: any) => {
+        this.credits.cast = data.cast ? data.cast : [];
+        this.credits.crew = data.crew ? data.crew : [];
+      },
+      err => {
+        console.log(err);
+        this.credits.state = 'error';
+      },
+      () => {
+        this.credits.state = 'loaded';
+      }
+    );
   }
 
   private getImagePath() {
@@ -41,4 +63,10 @@ export class MovieComponent implements OnInit {
     return '/assets/movie-generic.jpg';
   }
 
+  public getProfileImagePath(profilePath: string) {
+    if (profilePath) {
+      return IMG_ENDPOINT + '/w92' + profilePath;
+    }
+    return '/assets/actor-generic.jpg';
+  }
 }

@@ -1,30 +1,70 @@
 <he-top-bar></he-top-bar>
-<he-spinner *ngIf="state === 'loading'"></he-spinner>
-<he-error-state *ngIf="state === 'error'"></he-error-state>
+
+<article>
+    <he-spinner *ngIf="state === 'loading'"></he-spinner>
+    <he-error-state *ngIf="state === 'error'"></he-error-state>
+    <div *ngIf="state === 'loaded'" class="container details movie-details">
+      <div class="row">
+        <div class="col-md-8">
+          <h1>{{details.title}}</h1>
+          <h4>{{details.tagline}}</h4>
+          <p>{{details.overview}}</p>
+          <p><strong>{{'Released'}}</strong> {{ details.release_date | amTimeAgo}}</p>
+          <ul class="genre-list">
+            <li class="genre" *ngFor="let genre of details.genres">
+              {{ genre.name }}
+            </li>
+          </ul>
+          <a  *ngIf="details.homepage" href="{{details.homepage}}">{{details.homepage}}</a>
+          <p>more like this..</p>
+        </div>
+        <div class="col-md-4">
+          <img src="{{imagePath}}" alt="{{details.title}}" width="100%">
+        </div>
+      </div>
+
+      <section>
+          <he-spinner *ngIf="credits.state === 'loading'"></he-spinner>
+          <div *ngIf="credits.state === 'loaded'" class="container details credits">
+            <div class="row">
+              <div class="col-xs-12">
+                <h2>Credits</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6" *ngIf="credits.cast.length > 0">
+                <h3>Cast</h3>
+                <ul class=credits>
+                  <li class="credit movie-credit" *ngFor="let role of credits.cast | slice:0:10 ">
+                    <img src="{{getProfileImagePath(role.profile_path)}}" alt="" width="32px">
+                    <strong>
+                      <a [routerLink]="['/actor', role.id]"> {{ role.name }}</a>
+                    </strong> as {{ role.character }}
+                  </li>
+                </ul>
+
+              </div>
+              <div class="col-md-6" *ngIf="credits.crew.length > 0">
+                <h3>Crew</h3>
+                <ul class=credits>
+                  <li class="credit movie-credit" *ngFor="let role of credits.crew | slice:0:10 ">
+                    <img src="{{getProfileImagePath(role.profile_path)}}" alt="" width="32px">
+                    <strong>
+                      <a [routerLink]="['/actor', role.id]">{{ role.name }}</a>
+                    </strong>, {{ role.job }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
 
 
-<div *ngIf="state === 'loaded'" class="container details movie-details">
-  <div class="row">
-    <div class="col-md-8">
-      <h1>{{details.title}}</h1>
-      <h4>{{details.tagline}}</h4>
-      <p>{{details.overview}}</p>
-      <p><strong>{{'Released'}}</strong> {{ details.release_date | amTimeAgo}}</p>
-      <ul class="genre-list">
-        <li class="genre" *ngFor="let genre of details.genres">
-          {{ genre.name }}
-        </li>
-      </ul>
-      <a  *ngIf="details.homepage" href="{{details.homepage}}">{{details.homepage}}</a>
-      <p>more like this..</p>
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+            <!-- <youtube-player [videoId]="'p9wE8dyzEJE'" width="800px" height="400px"></youtube-player> --></div>
+      </div>
     </div>
-    <div class="col-md-4">
-      <img src="{{imagePath}}" alt="{{details.title}}" width="100%">
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-8">credits</div>
-    <div class="col-md-4">
-        <!-- <youtube-player [videoId]="'p9wE8dyzEJE'" width="800px" height="400px"></youtube-player> --></div>
-  </div>
-</div>
+
+</article>

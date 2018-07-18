@@ -13,14 +13,14 @@ export class ActorComponent implements OnInit {
   details: any;
   imagePath: string;
   state: string;
-  otherCredits = { state: 'empty', cast: [], crew: [] };
+  credits = { state: 'empty', cast: [], crew: [] };
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit() {
     const id: number = this.route.snapshot.params['id'];
     this.getDetails(id);
-    this.getOtherCredits(id);
+    this.getcredits(id);
   }
 
   private getDetails(id: number) {
@@ -39,19 +39,19 @@ export class ActorComponent implements OnInit {
       });
   }
 
-  private getOtherCredits(id: number) {
-    this.otherCredits.state = 'loading';
+  private getcredits(id: number) {
+    this.credits.state = 'loading';
     this.apiService.getCreditsByActorId(id).subscribe(
       (data: any) => {
-        this.otherCredits.cast = data.cast ? data.cast : [];
-        this.otherCredits.crew = data.crew ? data.crew : [];
+        this.credits.cast = data.cast ? data.cast : [];
+        this.credits.crew = data.crew ? data.crew : [];
       },
       err => {
         console.log(err);
-        this.otherCredits.state = 'error';
+        this.credits.state = 'error';
       },
       () => {
-        this.otherCredits.state = 'loaded';
+        this.credits.state = 'loaded';
       }
     );
   }

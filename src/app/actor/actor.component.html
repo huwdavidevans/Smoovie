@@ -8,7 +8,7 @@
       <div class="col-md-8">
         <h1>{{details.name}}</h1>
         <h4>{{details.known_for_department}}</h4>
-        <p>
+        <p *ngIf="details.birthday">
           <strong>Born:</strong> {{ details.birthday | amDateFormat:'dddd, MMMM Do YYYY' }} in {{ details.place_of_birth }}
           <span *ngIf="details.deathday">
             <br>
@@ -25,18 +25,18 @@
     </div>
 
     <section>
-      <he-spinner *ngIf="otherCredits.state === 'loading'"></he-spinner>
-      <div *ngIf="otherCredits.state === 'loaded'" class="container details credits">
+      <he-spinner *ngIf="credits.state === 'loading'"></he-spinner>
+      <div *ngIf="credits.state === 'loaded'" class="container details credits">
         <div class="row">
           <div class="col-xs-12">
             <h2>Credits</h2>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6" *ngIf="otherCredits.cast.length > 0">
+          <div class="col-md-6" *ngIf="credits.cast.length > 0">
             <h3>As Cast</h3>
             <ul class=credits>
-              <li class="credit movie-credit" *ngFor="let role of otherCredits.cast | slice:0:10 ">
+              <li class="credit movie-credit" *ngFor="let role of credits.cast | slice:0:10 ">
                 <img src="{{getPosterImagePath(role.poster_path)}}" alt="" width="32px">
                 <strong>
                   <a [routerLink]="['/movie', role.id]"> {{ role.title }}</a>
@@ -45,10 +45,10 @@
             </ul>
 
           </div>
-          <div class="col-md-6" *ngIf="otherCredits.crew.length > 0">
+          <div class="col-md-6" *ngIf="credits.crew.length > 0">
             <h3>As Crew</h3>
             <ul class=credits>
-              <li class="credit movie-credit" *ngFor="let role of otherCredits.crew | slice:0:10 ">
+              <li class="credit movie-credit" *ngFor="let role of credits.crew | slice:0:10 ">
                 <img src="{{getPosterImagePath(role.poster_path)}}" alt="" width="32px">
                 <strong>
                   <a [routerLink]="['/movie', role.id]">{{ role.title }}</a>
