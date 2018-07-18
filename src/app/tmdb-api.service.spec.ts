@@ -34,7 +34,7 @@ describe('ApiService', () => {
     beforeEach(() => {
       searchPayload = {
         page: 1,
-        results: [ { title: 'Star Wars' }  ]
+        results: [{ title: 'Star Wars' }]
       };
     });
 
@@ -164,7 +164,7 @@ describe('ApiService', () => {
     beforeEach(() => {
       searchPayload = {
         page: 1,
-        results: [ { title: 'Star Wars' }, {title: 'Krull'}, {title: 'Silent Running'}  ]
+        results: [{ title: 'Star Wars' }, { title: 'Krull' }, { title: 'Silent Running' }]
       };
     });
 
@@ -247,7 +247,6 @@ describe('ApiService', () => {
   });
 
   describe('getActorById', () => {
-
     let payload;
 
     beforeEach(() => {
@@ -288,18 +287,116 @@ describe('ApiService', () => {
   });
 
   describe('getCreditsByMovieId', () => {
+    let payload;
 
+    beforeEach(() => {
+      payload = { cast: [], crew: [] };
+    });
+
+    it('should return movie credits', (done) => {
+      const movieId = 90210;
+      const expectedUrl = 'https://api.themoviedb.org/3/movie/90210/credits?api_key=224cff7f326dbbfde49d42869c0e1f1e';
+
+      apiService.getCreditsByMovieId(movieId)
+        .subscribe((data) => {
+          expect(data).toBe(payload);
+          done();
+        });
+
+      const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
+      apiRequest.flush(payload);
+      httpMock.verify();
+    });
+
+    it('should return an error', (done) => {
+      const expectedUrl = 'https://api.themoviedb.org/3/movie/undefined/credits?api_key=224cff7f326dbbfde49d42869c0e1f1e';
+
+      apiService.getCreditsByMovieId()
+        .subscribe(null, (err) => {
+          expect(err).toBeTruthy();
+          done();
+        });
+
+      const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
+      apiRequest.error(new Error('bad request'));
+      httpMock.verify();
+    });
 
   });
 
   describe('getCreditsByActorId', () => {
+    let payload;
 
+    beforeEach(() => {
+      payload = { cast: [], crew: [] };
+    });
+
+    it('should return movie credits', (done) => {
+      const actorId = 90210;
+      const expectedUrl = 'https://api.themoviedb.org/3/person/90210/movie_credits?api_key=224cff7f326dbbfde49d42869c0e1f1e';
+
+      apiService.getCreditsByActorId(actorId)
+        .subscribe((data) => {
+          expect(data).toBe(payload);
+          done();
+        });
+
+      const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
+      apiRequest.flush(payload);
+      httpMock.verify();
+    });
+
+    it('should return an error', (done) => {
+      const expectedUrl = 'https://api.themoviedb.org/3/person/undefined/movie_credits?api_key=224cff7f326dbbfde49d42869c0e1f1e';
+
+      apiService.getCreditsByActorId()
+        .subscribe(null, (err) => {
+          expect(err).toBeTruthy();
+          done();
+        });
+
+      const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
+      apiRequest.error(new Error('bad request'));
+      httpMock.verify();
+    });
 
   });
 
   describe('getSimilarMoviesByMovieId', () => {
+    let payload;
 
+    beforeEach(() => {
+      payload = { results: [{ title: 'Star Wars' }, { title: 'Krull' }, { title: 'Silent Running' }] };
+    });
 
+    it('should return movie credits', (done) => {
+      const movieId = 90210;
+      const expectedUrl = 'https://api.themoviedb.org/3/movie/90210/similar?api_key=224cff7f326dbbfde49d42869c0e1f1e';
+
+      apiService.getSimilarMoviesByMovieId(movieId)
+        .subscribe((data) => {
+          expect(data).toBe(payload);
+          done();
+        });
+
+      const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
+      apiRequest.flush(payload);
+      httpMock.verify();
+    });
+
+    it('should return an error', (done) => {
+      const expectedUrl = 'https://api.themoviedb.org/3/movie/undefined/similar?api_key=224cff7f326dbbfde49d42869c0e1f1e';
+
+      apiService.getSimilarMoviesByMovieId()
+        .subscribe(null, (err) => {
+          expect(err).toBeTruthy();
+          done();
+        });
+
+      const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
+      apiRequest.error(new Error('bad request'));
+      httpMock.verify();
+    });
   });
 
 });
