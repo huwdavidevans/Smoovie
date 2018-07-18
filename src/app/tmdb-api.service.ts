@@ -35,6 +35,18 @@ export class ApiService {
     return this.http.get<Object>(this.buildGetActorByIdUrl(id));
   }
 
+  public getCreditsByMovieId(id: number) {
+    return this.http.get<Object>(this.buildGetCreditsByMovieId(id));
+  }
+
+  public getCreditsByActorId(id: number) {
+    return this.http.get<Object>(this.buildGetCreditsByActorId(id));
+  }
+
+  public getSimilarMoviesByMovieId(id: number) {
+    return this.http.get<Object>(this.buildGetSimilarMoviesByMovieId(id));
+  }
+
   private buildSearchMoviesUrl(query: string, filter: string, page: number ): string {
     return API_ENDPOINT
     + '/3/search/'
@@ -72,4 +84,29 @@ export class ApiService {
       + API_KEY
       + '&language=en-US';
   }
+
+  private buildGetCreditsByMovieId(id: number): string {
+    return API_ENDPOINT
+      + '/3/movie/'
+      + id
+      + 'credits?api_key='
+      + API_KEY;
+  }
+
+  private buildGetCreditsByActorId(id: number): string {
+    return API_ENDPOINT
+      + '/3/person/'
+      + id
+      + 'movie_credits?api_key='
+      + API_KEY;
+  }
+
+  private buildGetSimilarMoviesByMovieId(id: number): string {
+    return API_ENDPOINT
+      + '/3/movie/'
+      + id
+      + 'similar?api_key='
+      + API_KEY;
+  }
+
 }
