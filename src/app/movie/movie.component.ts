@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MovieService } from '../movie.service';
+import { ApiService } from '../tmdb-api.service';
 import { environment } from '../../environments/environment';
 
 const IMG_ENDPOINT = environment.imgEndpoint;
@@ -12,7 +12,7 @@ const IMG_ENDPOINT = environment.imgEndpoint;
 })
 export class MovieComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private movieService: MovieService) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
   details: any;
   imagePath: string;
   state: string;
@@ -20,7 +20,7 @@ export class MovieComponent implements OnInit {
   ngOnInit() {
     const id: number = this.route.snapshot.params['id'];
     this.state = 'loading';
-    this.movieService.getMovieById(id).subscribe(
+    this.apiService.getMovieById(id).subscribe(
       data => {
         this.details = data;
         this.imagePath = this.getImagePath();

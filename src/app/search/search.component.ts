@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../movie.service';
+import { ApiService } from '../tmdb-api.service';
 
 @Component({
   selector: 'he-search',
@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   data;
   discoverResults;
 
-  constructor(private movieService: MovieService) { }
+  constructor(private apiService: ApiService) { }
 
   ngOnInit() {
     this.goToDiscoverPage();
@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit {
 
   goToPage(page: number = 1) {
     this.state = 'loading';
-    this.movieService.searchMovieDb(this.query, this.filter, page)
+    this.apiService.searchMovies(this.query, this.filter, page)
     .subscribe(
       data => {
         this.data = data;
@@ -44,7 +44,7 @@ export class SearchComponent implements OnInit {
 
   goToDiscoverPage(page: number = 1) {
     this.state = 'loading';
-    this.movieService.getPopularMovieDb(page)
+    this.apiService.getPopularMovies(page)
     .subscribe(
       (data: any) => {
         this.discoverResults = data.results;

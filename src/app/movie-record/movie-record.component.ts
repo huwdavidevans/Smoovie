@@ -28,7 +28,7 @@ export class MovieRecordComponent implements OnInit, OnChanges {
     this.headline = this.getIdentity();
     this.description = this.getDescription();
     this.imagePath = this.getImage();
-    this.detailsPath = this.getDetailsPath()
+    this.detailsPath = this.getDetailsPath();
   }
 
   private determineType() {
@@ -64,10 +64,10 @@ export class MovieRecordComponent implements OnInit, OnChanges {
 
     private getDetailsPath() {
       if (this.type === 'person') {
-        return null;
+        return '#';
       }
       if (this.type === 'tv') {
-        return null;
+        return '#';
       }
       return '/movie/' + this.record.id;
     }
