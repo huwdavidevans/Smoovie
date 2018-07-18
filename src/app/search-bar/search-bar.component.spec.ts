@@ -33,4 +33,34 @@ describe('SearchBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('submit', () => {
+
+    it('should emit the model', () => {
+      spyOn(component.searchChange, 'emit');
+      component.model.searchTerm = 'Ray Romano';
+      component.model.filter = 'actor';
+      component.submit(null);
+      expect(component.searchChange.emit).toHaveBeenCalledWith({ searchTerm: 'Ray Romano', filter: 'actor' });
+    });
+
+    it('should emit the model', () => {
+      spyOn(component.searchChange, 'emit');
+      component.model.searchTerm = 'Holy Mountain';
+      component.model.filter = 'movie';
+      component.submit(new Event('test'));
+      expect(component.searchChange.emit).toHaveBeenCalledWith({ searchTerm: 'Holy Mountain', filter: 'movie' });
+    });
+
+    it('should preventDefault on the event', () => {
+      spyOn(component.searchChange, 'emit');
+      component.model.searchTerm = 'Holy Mountain';
+      component.model.filter = 'movie';
+      component.submit({
+        preventDefault: () => {
+          expect(true);
+      }});
+    });
+
+  });
 });
