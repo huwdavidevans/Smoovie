@@ -19,12 +19,12 @@
   </div>
 
   <ul class="result-list">
-    <he-movie-record *ngFor="let item of data.results |
+    <he-search-result *ngFor="let item of data.results |
     paginate: {
       itemsPerPage: 20,
       currentPage: data.page,
       totalItems: data.total_results
-    }" [record]="item" [recordType]="filter"></he-movie-record>
+    }" [record]="item" [recordType]="filter"></he-search-result>
   </ul>
 
   <div class="text-right" *ngIf="data.total_results > 0">

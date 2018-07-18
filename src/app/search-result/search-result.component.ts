@@ -4,11 +4,11 @@ import { environment } from '../../environments/environment';
 const IMG_ENDPOINT = environment.imgEndpoint;
 
 @Component({
-  selector: 'he-movie-record',
-  templateUrl: './movie-record.component.html',
-  styleUrls: ['./movie-record.component.scss']
+  selector: 'he-search-result',
+  templateUrl: './search-result.component.html',
+  styleUrls: ['./search-result.component.scss']
 })
-export class MovieRecordComponent implements OnInit, OnChanges {
+export class SearchResultComponent implements OnInit, OnChanges {
 
   type: string;
   imagePath: string;

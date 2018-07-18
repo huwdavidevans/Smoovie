@@ -31,7 +31,7 @@ export class ApiService {
     return this.http.get<Object>(this.buildGetMovieByIdUrl(id));
   }
 
-  public getActorByID(id: number) {
+  public getActorById(id: number) {
     return this.http.get<Object>(this.buildGetActorByIdUrl(id));
   }
 

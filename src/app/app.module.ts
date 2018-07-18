@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { MovieRecordComponent } from './movie-record/movie-record.component';
+import { SearchResultComponent } from './search-result/search-result.component';
 import { MoviePosterComponent } from './movie-poster/movie-poster.component';
 import { ActorComponent } from './actor/actor.component';
 import { MovieComponent } from './movie/movie.component';
@@ -23,7 +23,7 @@ import { MomentModule } from 'angular2-moment';
     AppComponent,
     SearchBarComponent,
     SpinnerComponent,
-    MovieRecordComponent,
+    SearchResultComponent,
     MoviePosterComponent,
     ActorComponent,
     MovieComponent,
