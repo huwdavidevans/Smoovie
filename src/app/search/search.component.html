@@ -1,7 +1,7 @@
 <he-search-bar (searchChange)="updateSearch($event)"></he-search-bar>
 
 <he-spinner *ngIf="state === 'loading'"></he-spinner>
-<div *ngIf="state === 'error'" class="state error-state"><h1>:(</h1><p>Sorry but we were unable to return your results.</p></div>
+<he-error-state *ngIf="state === 'error'"></he-error-state>
 
 <div class="container discover" *ngIf="state === 'discoverLoaded'">
     <h2>Discover Popular Movies</h2>

@@ -1,12 +1,9 @@
 <he-top-bar></he-top-bar>
 <he-spinner *ngIf="state === 'loading'"></he-spinner>
-<div *ngIf="state === 'error'" class="state error-state">
-  <h1>:(</h1>
-  <p>Sorry but we were unable to return your results.</p>
-</div>
+<he-error-state *ngIf="state === 'error'"></he-error-state>
 
 
-<div class="container movie-details">
+<div *ngIf="state === 'loaded'" class="container details movie-details">
   <div class="row">
     <div class="col-md-8">
       <h1>{{details.title}}</h1>
@@ -18,7 +15,7 @@
           {{ genre.name }}
         </li>
       </ul>
-      <a href="{{details.homepage}}">{{details.homepage}}</a>
+      <a  *ngIf="details.homepage" href="{{details.homepage}}">{{details.homepage}}</a>
       <p>more like this..</p>
     </div>
     <div class="col-md-4">

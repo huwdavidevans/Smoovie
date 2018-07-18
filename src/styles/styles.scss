@@ -18,14 +18,13 @@
     p {
         font-size: 1.5rem;
     }
-    &.error-state {
-        h1 {
-            font-size: 20rem;
-        }
-    }
     &.empty-state {
         h1 {
             margin: 5rem auto;
         }
     }
+}
+
+.details {
+  margin-top: 4rem;
 }

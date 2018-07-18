@@ -64,7 +64,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 
     private getDetailsPath() {
       if (this.type === 'person') {
-        return '#';
+        return '/actor/' + this.item.id;
       }
       if (this.type === 'tv') {
         return '#';

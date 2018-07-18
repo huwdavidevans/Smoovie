@@ -1,1 +1,30 @@
 <he-top-bar></he-top-bar>
+<he-spinner *ngIf="state === 'loading'"></he-spinner>
+<he-error-state *ngIf="state === 'error'"></he-error-state>
+
+<div *ngIf="state === 'loaded'" class="container details actor-details">
+    <div class="row">
+      <div class="col-md-8">
+        <h1>{{details.name}}</h1>
+        <h4>{{details.known_for_department}}</h4>
+        <p>
+          <strong>Born:</strong> {{ details.birthday | amDateFormat:'dddd, MMMM Do YYYY' }} in {{ details.place_of_birth }}
+          <span *ngIf="details.deathday">
+            <br>
+            <strong>Died:</strong> {{ details.deathday | amDateFormat:'dddd, MMMM Do YYYY' }}
+          </span>
+        </p>
+        <p>{{details.biography}}</p>
+
+        <a  *ngIf="details.homepage" href="{{details.homepage}}">{{details.homepage}}</a>
+        <p>more like this..</p>
+      </div>
+      <div class="col-md-4">
+        <img src="{{imagePath}}" alt="{{details.title}}" width="100%">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">credits</div>
+      <div class="col-md-4"></div>
+    </div>
+  </div>

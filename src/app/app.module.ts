@@ -17,6 +17,7 @@ import { TopBarComponent } from './top-bar/top-bar.component';
 
 import { YoutubePlayerModule } from 'ngx-youtube-player';
 import { MomentModule } from 'angular2-moment';
+import { ErrorStateComponent } from './error-state/error-state.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MomentModule } from 'angular2-moment';
     ActorComponent,
     MovieComponent,
     SearchComponent,
-    TopBarComponent
+    TopBarComponent,
+    ErrorStateComponent
   ],
   imports: [
     BrowserModule,
