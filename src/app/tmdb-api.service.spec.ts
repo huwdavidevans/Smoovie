@@ -206,28 +206,64 @@ describe('ApiService', () => {
   });
 
   describe('getMovieById', () => {
+    let payload;
 
-    it('should return an observable of type Object', () => { });
+    beforeEach(() => {
+      payload = {
+        title: 'Star Wars',
+        poster_path: '//starwars.jpg'
+      };
+    });
+
+    it('should return a movie', (done) => {
+      const movieId = 90210;
+      const expectedUrl = 'https://api.themoviedb.org/3/movie/90210?api_key=224cff7f326dbbfde49d42869c0e1f1e&language=en-US';
+
+      apiService.getMovieById(movieId)
+        .subscribe((data) => {
+          expect(data).toBe(payload);
+          done();
+        });
+
+      const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
+      apiRequest.flush(payload);
+      httpMock.verify();
+    });
+
+    it('should return an error', (done) => {
+      const expectedUrl = 'https://api.themoviedb.org/3/movie/undefined?api_key=224cff7f326dbbfde49d42869c0e1f1e&language=en-US';
+
+      apiService.getMovieById()
+        .subscribe(null, (err) => {
+          expect(err).toBeTruthy();
+          done();
+        });
+
+      const apiRequest = httpMock.expectOne({ method: 'GET', url: expectedUrl });
+      apiRequest.error(new Error('bad request'));
+      httpMock.verify();
+    });
+
   });
 
   describe('getActorById', () => {
 
-    it('should return an observable of type Object', () => { });
+
   });
 
   describe('getCreditsByMovieId', () => {
 
-    it('should return an observable of type Object', () => { });
+
   });
 
   describe('getCreditsByActorId', () => {
 
-    it('should return an observable of type Object', () => { });
+
   });
 
   describe('getSimilarMoviesByMovieId', () => {
 
-    it('should return an observable of type Object', () => { });
+
   });
 
 });
