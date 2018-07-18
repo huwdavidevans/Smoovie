@@ -40,7 +40,7 @@ export class MovieComponent implements OnInit {
       () => {
         this.state = 'loaded';
       });
-   }
+  }
 
   private getCredits(id: number) {
     this.credits.state = 'loading';

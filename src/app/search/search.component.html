@@ -4,18 +4,21 @@
 <he-error-state *ngIf="state === 'error'"></he-error-state>
 
 <div class="container discover" *ngIf="state === 'discoverLoaded'">
-    <h2>Discover Popular Movies</h2>
-    <div class="state">
-      <he-movie-poster *ngFor="let movie of discoverResults" [movie]="movie"></he-movie-poster>
-    </div>
+  <h2>Discover Popular Movies</h2>
+  <div class="state">
+    <he-movie-poster *ngFor="let movie of discoverResults" [movie]="movie"></he-movie-poster>
+  </div>
 </div>
 
 <div class="container results" *ngIf="state === 'loaded' && data && data.results">
-  <h2>Showing <span class="highlight">{{ data.total_results }}</span> results for <span class="highlight">{{ query }}</span></h2>
+  <h2>Showing
+    <span class="highlight">{{ data.total_results }}</span> results for
+    <span class="highlight">{{ query }}</span>
+  </h2>
 
   <div class="text-right" *ngIf="data.total_results > 0">
-    <pagination-controls (pageChange)="goToPage($event)" maxSize="9" directionLinks="true" autoHide="false"
-      previousLabel="" nextLabel=""></pagination-controls>
+    <pagination-controls (pageChange)="goToPage($event)" maxSize="9" directionLinks="true" autoHide="false" previousLabel=""
+      nextLabel=""></pagination-controls>
   </div>
 
   <ul class="result-list">
@@ -28,7 +31,7 @@
   </ul>
 
   <div class="text-right" *ngIf="data.total_results > 0">
-    <pagination-controls (pageChange)="goToPage($event)" maxSize="9" directionLinks="true" autoHide="false"
-      previousLabel="" nextLabel=""></pagination-controls>
+    <pagination-controls (pageChange)="goToPage($event)" maxSize="9" directionLinks="true" autoHide="false" previousLabel=""
+      nextLabel=""></pagination-controls>
   </div>
 </div>

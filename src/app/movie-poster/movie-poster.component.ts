@@ -17,7 +17,7 @@ export class MoviePosterComponent implements OnInit, OnChanges {
   @Input() movie: any;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
   ngOnChanges(changes) {
     if (!this.movie) { return; }
     this.id = this.movie.id;

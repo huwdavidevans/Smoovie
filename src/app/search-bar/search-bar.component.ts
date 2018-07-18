@@ -14,8 +14,8 @@ export class SearchBarComponent implements OnInit {
 
   @Output() searchChange: EventEmitter<Object> = new EventEmitter();
 
-  constructor() {}
-  ngOnInit() {}
+  constructor() { }
+  ngOnInit() { }
 
   submit(event) {
     if (event) {

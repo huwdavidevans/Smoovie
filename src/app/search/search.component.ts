@@ -29,32 +29,32 @@ export class SearchComponent implements OnInit {
   goToPage(page: number = 1) {
     this.state = 'loading';
     this.apiService.searchMovies(this.query, this.filter, page)
-    .subscribe(
-      data => {
-        this.data = data;
-      },
-      err => {
-        console.log(err);
-        this.state = 'error';
-      },
-      () => {
-        this.state = 'loaded';
-    });
+      .subscribe(
+        data => {
+          this.data = data;
+        },
+        err => {
+          console.log(err);
+          this.state = 'error';
+        },
+        () => {
+          this.state = 'loaded';
+        });
   }
 
   goToDiscoverPage(page: number = 1) {
     this.state = 'loading';
     this.apiService.getPopularMovies(page)
-    .subscribe(
-      (data: any) => {
-        this.discoverResults = data.results;
-      },
-      err => {
-        console.log(err);
-        this.state = 'error';
-      },
-      () => {
-        this.state = 'discoverLoaded';
-    });
+      .subscribe(
+        (data: any) => {
+          this.discoverResults = data.results;
+        },
+        err => {
+          console.log(err);
+          this.state = 'error';
+        },
+        () => {
+          this.state = 'discoverLoaded';
+        });
   }
 }
