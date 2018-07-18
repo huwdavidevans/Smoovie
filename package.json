@@ -25,6 +25,8 @@
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "ionicons": "^4.2.4",
+    "lodash": "^4.17.10",
+    "moment": "^2.22.2",
     "ngx-pagination": "^3.1.1",
     "ngx-youtube-player": "^6.0.0",
     "rxjs": "^6.2.2",

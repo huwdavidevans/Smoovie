@@ -1,6 +1,9 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { environment } from '../../environments/environment';
 
+import * as _ from 'lodash';
+import * as moment from 'moment';
+
 const IMG_ENDPOINT = environment.imgEndpoint;
 
 @Component({
@@ -15,6 +18,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
   headline: string;
   description: string;
   detailsPath: string;
+  linkClass: string;
 
   @Input() item: any;
   @Input() filterChoice: string;
@@ -41,40 +45,54 @@ export class SearchResultComponent implements OnInit, OnChanges {
     if (this.filterChoice === 'movie') {
       this.type = 'movie';
     }
+
+    if (this.type === 'tv') {
+      this.linkClass = 'disabled';
+    }
   }
 
   private getImage() {
     if (this.type !== 'person') {
       return this.item.poster_path ? IMG_ENDPOINT + '/w200' + this.item.poster_path : '/assets/movie-generic.jpg';
     }
-    return this.item.profile_path ? IMG_ENDPOINT  + '/w200' + this.item.profile_path : '/assets/actor-generic.jpg';
+    return this.item.profile_path ? IMG_ENDPOINT + '/w200' + this.item.profile_path : '/assets/actor-generic.jpg';
   }
 
-    private getDescription() {
-      if (this.type !== 'person') {
-        return this.item.overview;
-      }
-
-      if (this.item.known_for && this.item.known_for.length > 0) {
-        return this.item.name + ' is an actor known for their involvement in various shows.';
-      } else {
-        return this.item.name + ' is an actor, but that\'s all we know.';
-      }
+  private getDescription() {
+    if (this.type !== 'person') {
+      return this.item.overview;
     }
 
-    private getDetailsPath() {
-      if (this.type === 'person') {
-        return '/actor/' + this.item.id;
-      }
-      if (this.type === 'tv') {
-        return '#';
-      }
-      return '/movie/' + this.item.id;
+    if (this.item.known_for && this.item.known_for.length > 0) {
+      return this.item.name + ' is an actor known for their involvement in ' + this.getActorCredits().join(', ');
+    } else {
+      return this.item.name + ' is an actor, but that\'s all we know.';
     }
+  }
+
+  private getActorCredits(): Array<String> {
+    return _.map(this.item.known_for, (credit: any) => {
+      const titleSelector = (credit.media_type === 'tv') ? 'name' : 'title';
+      const dateSelector = (credit.media_type === 'tv') ? 'first_air_date' : 'release_date';
+      return `${credit[titleSelector]} (${moment(credit[dateSelector]).format('YYYY')})`;
+    });
+  }
+
+  private getDetailsPath() {
+    if (this.type === 'person') {
+      return '/actor/' + this.item.id;
+    }
+    if (this.type === 'tv') {
+      return '#';
+    }
+    return '/movie/' + this.item.id;
+  }
 
   private getIdentity() {
     if (this.type === 'movie') {
       return this.item.title;
+    } if (this.type === 'tv') {
+      return `${this.item.name} (TV)`;
     } else {
       return this.item.name;
     }
