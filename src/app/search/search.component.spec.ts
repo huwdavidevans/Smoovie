@@ -48,4 +48,41 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('ngOnInit', () => {
+
+    it('should call the discover page method', () => {
+      spyOn(component, 'goToDiscoverPage');
+      component.ngOnInit();
+      expect(component.goToDiscoverPage).toHaveBeenCalled();
+    });
+
+  });
+
+  describe('updateSearch', () => {
+
+    const searchModel = {
+      searchTerm: 'Stephen Toast',
+      filter: 'actor'
+    };
+
+    it('should update query', () => {
+      component.updateSearch(searchModel);
+      expect(component.query).toBe(searchModel.searchTerm);
+    });
+
+    it('should update filter', () => {
+      component.updateSearch(searchModel);
+      expect(component.filter).toBe(searchModel.filter);
+    });
+
+    it('should update gotoPage', () => {
+      spyOn(component, 'goToPage');
+      component.updateSearch(searchModel);
+      expect(component.goToPage).toHaveBeenCalled();
+    });
+
+  });
+
+
 });
